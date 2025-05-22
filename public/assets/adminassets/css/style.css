@@ -1,0 +1,413 @@
+/* ----------------scroll bar customise------------------- */
+/* width */
+body::-webkit-scrollbar {
+    width: 6px;
+}
+
+/* Track */
+body::-webkit-scrollbar-track {
+    background: #011e40;
+}
+
+/* Handle */
+body::-webkit-scrollbar-thumb {
+    background: #007fff;
+}
+
+/* Handle on hover */
+body::-webkit-scrollbar-thumb:hover {
+    background: #ffffff;
+}
+
+
+
+/*--------- Smooth toggle dark and light----------- */
+
+.switch-container .toggle {
+    position: relative;
+    display: inline-block;
+    width: 44px;
+    height: 24px;
+    margin-left: 0;
+    padding: 1px;
+    border-radius: 40px;
+    margin: 8px auto;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.switch-container .toggle-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #c0e6f6;
+    border-radius: 40px;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.switch-container .toggle-input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 1px solid red;
+    border-radius: 40px;
+    z-index: 2;
+    opacity: 0;
+}
+
+.switch-container .toggle-switch {
+    position: relative;
+    width: 22px;
+    height: 22px;
+    margin-left: 19px;
+    background-color: #f5eb42;
+    border: 4px solid #e4c74d;
+    border-radius: 50%;
+    transition: margin-left 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.switch-container .toggle-input:checked~.toggle-switch {
+    margin-left: 0;
+    border-color: #dee1c5;
+    background-color: #fffdf2;
+}
+
+.switch-container .toggle-input:checked~.toggle-bg {
+    background-color: #484848;
+    border-color: #202020;
+}
+
+.switch-container .toggle-input:checked~.toggle-switch .toggle-switch-figure {
+    margin-left: 40px;
+    opacity: 0;
+    transform: scale(0.1);
+    transition: all 0.3s ease;
+}
+
+.switch-container .toggle-input:checked~.toggle-switch .toggle-switch-figureAlt {
+    transform: scale(1);
+    transition: all 0.3s ease;
+}
+
+.switch-container .toggle:hover .toggle-switch {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.switch-container .toggle:hover .toggle-bg {
+    filter: brightness(1.1);
+}
+
+/* toogle dark js */
+/* Add corresponding CSS */
+.dark-mode {
+    background-color: #222e3c;
+    color: #ffffff;
+
+}
+
+.dark-mode .card-body {
+    box-shadow: 0px 0px 1rem 2px rgb(16 29 44 / 42%);
+}
+
+.dark-mode .flatpickr-months .flatpickr-month {
+    color: #ffffff;
+}
+
+.dark-mode .flatpickr-day {
+    color: #ffffff;
+}
+
+.dark-mode .flatpickr-weekday {
+    color: #ffffff;
+}
+
+.dark-mode .flatpickr-months .flatpickr-next-month, .dark-mode .flatpickr-months .flatpickr-prev-month {
+    fill: rgb(59 125 221);
+    color: rgb(59 125 221);
+}
+
+.dark-mode .table>tbody>tr>td {
+    color: #ffffff70;
+}
+
+.dark-mode .table>thead {
+    color: #fff;
+}
+
+.dark-mode .table>:not(:last-child)>:last-child>*, .dark-mode .table tbody, .dark-mode .table td, .dark-mode .table tfoot, .dark-mode .table th, .dark-mode .table thead, .dark-mode .table tr {
+    border-color: #dee2e624;
+    color: #ffffff;
+}
+
+.dark-mode .hamburger, .dark-mode .hamburger:after, .dark-mode .hamburger:before {
+    background: #007fff;
+}
+
+.dark-mode .text-dark {
+    color: rgb(255 255 255) !important;
+}
+
+.dark-mode .nav-flag, .dark-mode .nav-icon {
+    color: #ffffff;
+}
+
+.dark-mode .navbar-light .navbar-nav .nav-link {
+    color: rgb(255 255 255 / 55%);
+}
+
+.dark-mode .admin-content-footer {
+    background: #1f2a38;
+}
+
+.dark-mode .list-group-item {
+    background-color: #222e3c;
+    border: 1px solid rgb(255 255 255 / 13%);
+    color: #c2c8cd;
+}
+
+.dark-mode .dropdown .list-group .list-group-item:hover {
+    background: #000000;
+}
+
+.dark-mode .dropdown-menu {
+    background-color: #222e3c;
+}
+
+.dark-mode .dropdown-item {
+    color: #ffffff;
+}
+
+.dark-mode .form-control {
+    background-color: #222e3c;
+    border: 1px solid #ffffff42;
+    color: #767a7e;
+}
+
+.dark-mode .form-control::placeholder {
+    color: #6c757d;
+    opacity: 1;
+}
+
+.dark-mode .dropdown-item.active, .dark-mode .dropdown-item:active {
+    background-color: #3b7ddd;
+    color: #fff;
+    text-decoration: none;
+}
+
+.dark-mode .dropdown-item:focus, .dark-mode .dropdown-item:hover {
+    background-color: #0075eb;
+    color: #fff;
+    text-decoration: none;
+}
+
+.dark-mode .dropdown-menu-header {
+    color: #fff;
+}
+
+.dark-mode .modal-content {
+    background-color: #11171e;
+    border: var(--bs-modal-border-width) solid rgb(255 255 255 / 21%);
+}
+
+
+
+.light-mode {
+    background-color: #f5f7fb;
+    color: #000000;
+}
+
+
+/* -----------------side bar---------- */
+
+.sidebar-content {
+    align-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    position: relative;
+}
+
+.sidebar-content {
+    left: 0;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+}
+
+/*--------------- window loader from refresh-------------- */
+:root {
+    --primary: #0e7cf5;
+    --secondary: #1d4d81;
+    --fg: #0d3dab;
+    --bg: #ffffff;
+    --dur: 5s;
+    --size: 8em;
+    --bar-width: calc(var(--size) * 0.25);
+    --bezier: cubic-bezier(0.7, 0, 0.3, 1);
+}
+
+
+/* Loader Container */
+.loader-container {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    background-color: #222e3c;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+/* Loader */
+.loader-container .pl {
+    display: flex;
+    justify-content: space-between;
+    width: var(--size);
+    aspect-ratio: 1;
+}
+
+.loader-container .pl__bar {
+    background-color: var(--primary);
+    position: relative;
+    width: var(--bar-width);
+    height: 100%;
+    transform-style: preserve-3d;
+}
+
+.loader-container .pl__bar,
+.loader-container .pl__bar:before,
+.loader-container .pl__bar:after {
+    animation: bar-color var(--dur) step-end infinite, bar-spin var(--dur) var(--bezier) infinite;
+}
+
+.loader-container .pl__bar:before,
+.loader-container .pl__bar:after {
+    animation-timing-function: step-end;
+    background-color: var(--fg);
+    content: "";
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: var(--bar-width);
+    height: var(--bar-width);
+    transition: background-color 0.3s;
+}
+
+.loader-container .pl__bar:before {
+    animation-name: bar-end-1;
+    transform: translateY(-50%) rotateX(90deg) translateZ(calc(var(--size) / 2 + 1px));
+}
+
+.loader-container .pl__bar:after {
+    animation-name: bar-end-2;
+    border-radius: 50%;
+    bottom: 0;
+    transform: translateY(-50%) rotateX(-90deg) translateZ(calc(var(--size) / 2 + 1px));
+}
+
+.loader-container .pl__bar:nth-child(2),
+.loader-container .pl__bar:nth-child(2):before,
+.loader-container .pl__bar:nth-child(2):after {
+    animation-delay: calc(var(--dur) * -0.96);
+}
+
+.loader-container .pl__bar:nth-child(3),
+.loader-container .pl__bar:nth-child(3):before,
+.loader-container .pl__bar:nth-child(3):after {
+    animation-delay: calc(var(--dur) * -0.92);
+}
+
+/* Animations */
+@keyframes bar-color {
+    from, 75%, to {
+        background-color: var(--primary);
+    }
+
+    25%, 50% {
+        background-color: var(--secondary);
+    }
+}
+
+@keyframes bar-spin {
+    from {
+        transform: rotateX(0);
+    }
+
+    25% {
+        transform: rotateX(-0.25turn);
+    }
+
+    50% {
+        transform: rotateX(-0.5turn);
+    }
+
+    75% {
+        transform: rotateX(-0.75turn);
+    }
+
+    to {
+        transform: rotateX(-1turn);
+    }
+}
+
+@keyframes bar-end-1 {
+    from, 25%, to {
+        background-color: var(--fg);
+        border-radius: 0;
+    }
+
+    50% {
+        background-color: var(--secondary);
+        border-radius: 50%;
+    }
+
+    75% {
+        background-color: var(--primary);
+        border-radius: 50%;
+    }
+}
+
+@keyframes bar-end-2 {
+    from, to {
+        background-color: var(--primary);
+        border-radius: 0;
+    }
+
+    25% {
+        background-color: var(--secondary);
+        border-radius: 0;
+    }
+
+    50%, 75% {
+        background-color: var(--fg);
+        border-radius: 50%;
+    }
+}
+
+
+/* ----------css------------- */
+.calender-card .card-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.dashboard-board .card.shadow-lg.dark-mode {
+    height: 95%;
+}
+
+.meeting-link-app {
+    position: relative;
+}
+
+.meeting-link-app .gmeetingwork img, .meeting-link-app .zoomwork img {
+    height: 100%;
+    width: 24%;
+    padding: 2px;
+}
