@@ -222,7 +222,7 @@
                 </li> --}}
 
                 {{-- <li class="sidebar-header">setting Management</li> --}}
-                <li class="sidebar-item {{ in_array(request()->route()->getName(), $mergesettinguserandsupportroutes) ? 'active' : '' }}">
+                <!-- <li class="sidebar-item {{ in_array(request()->route()->getName(), $mergesettinguserandsupportroutes) ? 'active' : '' }}">
                     <a class="sidebar-link sidebar-toggle" href="#" data-bs-toggle="collapse"
                         data-bs-target="#settingsDropdown" aria-expanded="false">
                         <i class="align-middle" data-feather="settings"></i>
@@ -235,7 +235,7 @@
                         <li class="sidebar-item sidebar-drop {{ request()->routeIs('admin.support') ? 'active' : '' }}"><a class="sidebar-link" href="{{ route('admin.support') }}">Support
                                 Manage</a></li>
                     </ul>
-                </li>
+                </li> -->
 
             </ul>
         </div>

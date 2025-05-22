@@ -3,7 +3,6 @@
 <!-- sidebar -->
 @include('admin.include.sidebar')
 
-
 <!-- main content -->
 <div class="admin-content">
 
@@ -30,10 +29,10 @@
                                     </div>
                                 </div>
                             </div>
-                            <h1 class="mt-1 mb-2">10</h1>
+                            <h1 class="mt-1 mb-2">{{ $totalInstitutions }}</h1>
                             <div class="mb-0">
-                                <p class="mb-1">Active: <span class="badge bg-success">7</span></p>
-                                <p class="mb-1">Suspended: <span class="badge bg-danger">3</span></p>
+                                <p class="mb-1">Active: <span class="badge bg-success">{{ $totalInstitutionsActive }}</span></p>
+                                <p class="mb-1">Suspended: <span class="badge bg-danger">{{ $totalInstitutionsInactive }}</span></p>
                             </div>
                         </div>
                     </div>
@@ -50,18 +49,17 @@
 
                                 <div class="col-auto">
                                     <div class="stat text-primary">
-                                        <i class="align-middle" data-feather="truck"></i>
+                                        <i class="align-middle" data-feather="users"></i>
                                     </div>
                                 </div>
                             </div>
-                            <h1 class="mt-1 mb-2">320</h1>
+                            <h1 class="mt-1 mb-2">{{ $totalStudents }}</h1>
                             <div class="mb-0">
-                                <p class="mb-1">Active: <span class="badge bg-success">280</span></p>
-                                <p class="mb-1">Suspended: <span class="badge bg-warning">40</span></p>
+                                <p class="mb-1">Active: <span class="badge bg-success">{{ $totalStudentsActive }}</span></p>
+                                <p class="mb-1">Suspended: <span class="badge bg-warning">{{ $totalStudentsInactive }}</span></p>
                             </div>
                         </div>
                     </div>
-
                 </div>
 
                 <!-- Course Management -->
@@ -75,22 +73,21 @@
 
                                 <div class="col-auto">
                                     <div class="stat text-primary">
-                                        <i class="align-middle" data-feather="truck"></i>
+                                        <i class="align-middle" data-feather="book"></i>
                                     </div>
                                 </div>
                             </div>
-                            <h1 class="mt-1 mb-2">25</h1>
+                            <h1 class="mt-1 mb-2">{{ $totalCourses }}</h1>
                             <div class="mb-0">
-                                <p class="mb-1">Active: <span class="badge bg-success">20</span></p>
-                                <p class="mb-1">Suspended: <span class="badge bg-warning">5</span></p>
+                                <p class="mb-1">Active: <span class="badge bg-success">{{ $totalCoursesActive }}</span></p>
+                                <p class="mb-1">Suspended: <span class="badge bg-warning">{{ $totalCoursesInactive }}</span></p>
                             </div>
                         </div>
                     </div>
-
                 </div>
 
-                 <!-- total Meeting -->
-                 <div class="col-lg-3">
+                <!-- Total Meeting -->
+                <div class="col-lg-3">
                     <div class="card">
                         <div class="card-body">
                             <div class="row">
@@ -100,20 +97,18 @@
 
                                 <div class="col-auto">
                                     <div class="stat text-primary">
-                                        <i class="align-middle" data-feather="truck"></i>
+                                        <i class="align-middle" data-feather="calendar"></i>
                                     </div>
                                 </div>
                             </div>
-                            <h1 class="mt-1 mb-2"><span>50</span></h1>
+                            <h1 class="mt-1 mb-2"><span>{{ $totalMeetings }}</span></h1>
                             <div class="mb-0">
-                                <p  class="mb-1">sheduled: <strong class="badge bg-success">20</strong></p>
-                                <p  class="mb-1">cancel: <strong class="badge bg-danger">30</strong></p>
+                                <p class="mb-1">Scheduled: <strong class="badge bg-success">{{ $totalMeetingsScheduled }}</strong></p>
+                                <p class="mb-1">Cancelled: <strong class="badge bg-danger">{{ $totalMeetingsCancelled }}</strong></p>
                             </div>
                         </div>
                     </div>
-
                 </div>
-
             </div>
 
             <!-- Meetings and Attendance -->
@@ -146,16 +141,25 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>Python Basics</td>
-                                        <td>2025-03-10</td>
-                                        <td><span class="badge bg-success">Completed</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Data Science Overview</td>
-                                        <td>2025-03-09</td>
-                                        <td><span class="badge bg-danger">Cancelled</span></td>
-                                    </tr>
+                                    @forelse ($recentMeetings as $meeting)
+                                        <tr>
+                                            <td>{{ $meeting->subject->subject_name }}</td>
+                                            <td>{{ \Carbon\Carbon::parse($meeting->meeting_date)->format('Y-m-d') }}</td>
+                                            <td>
+                                                @if ($meeting->status === 'Completed')
+                                                    <span class="badge bg-success">Completed</span>
+                                                @elseif ($meeting->status === 'Cancelled')
+                                                    <span class="badge bg-danger">Cancelled</span>
+                                                @else
+                                                    <span class="badge bg-secondary">{{ $meeting->status }}</span>
+                                                @endif
+                                            </td>
+                                        </tr>
+                                    @empty
+                                        <tr>
+                                            <td colspan="3" class="text-center">No recent meetings found.</td>
+                                        </tr>
+                                    @endforelse
                                 </tbody>
                             </table>
                         </div>
@@ -169,57 +173,40 @@
                                 <i class="fas fa-bullhorn me-2 text-warning"></i> Recent Announcements
                             </h5>
                             <div class="list-group">
-                                <a href="#" class="list-group-item">
-                                    <div class="row g-0 align-items-center">
-                                        <div class="col-2">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-alert-circle text-danger"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
-                                        </div>
-                                        <div class="col-10">
-                                            <div class="text-dark">Update completed</div>
-                                            <div class="text-muted small mt-1">Restart server 12 to complete the
-                                                update.</div>
-                                            <div class="text-muted small mt-1">30m ago</div>
-                                        </div>
-                                    </div>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <div class="row g-0 align-items-center">
-                                        <div class="col-2">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bell text-warning"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
-                                        </div>
-                                        <div class="col-10">
-                                            <div class="text-dark">Lorem ipsum</div>
-                                            <div class="text-muted small mt-1">Aliquam ex eros, imperdiet
-                                                vulputate
-                                                hendrerit et.</div>
-                                            <div class="text-muted small mt-1">2h ago</div>
-                                        </div>
-                                    </div>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <div class="row g-0 align-items-center">
-                                        <div class="col-2">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home text-primary"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
-                                        </div>
-                                        <div class="col-10">
-                                            <div class="text-dark">Login from 192.186.1.8</div>
-                                            <div class="text-muted small mt-1">5h ago</div>
-                                        </div>
-                                    </div>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <div class="row g-0 align-items-center">
-                                        <div class="col-2">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user-plus text-success"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><line x1="20" y1="8" x2="20" y2="14"></line><line x1="23" y1="11" x2="17" y2="11"></line></svg>
-                                        </div>
-                                        <div class="col-10">
-                                            <div class="text-dark">New connection</div>
-                                            <div class="text-muted small mt-1">Christina accepted your request.
+                                @php 
+                                    $recentAnnouncements = [
+                                        (object)[
+                                            'title' => 'New Course Available',
+                                            'description' => 'Check out our new course on Web Development.',
+                                            'icon_svg' => '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bell text-warning"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>',
+                                            'link' => '#',
+                                            'time_ago' => '2 hours ago'
+                                        ],
+                                        (object)[
+                                            'title' => 'System Maintenance',
+                                            'description' => 'Scheduled maintenance on 15th March.',
+                                            'icon_svg' => '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bell text-warning"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>',
+                                            'link' => '#',
+                                            'time_ago' => '1 day ago'
+                                        ]
+                                    ]; 
+                                @endphp
+                                @forelse ($recentAnnouncements as $announcement)
+                                    <a href="{{ $announcement->link ?? '#' }}" class="list-group-item">
+                                        <div class="row g-0 align-items-center">
+                                            <div class="col-2">
+                                                {!! $announcement->icon_svg !!}
                                             </div>
-                                            <div class="text-muted small mt-1">14h ago</div>
+                                            <div class="col-10">
+                                                <div class="text-dark">{{ $announcement->title }}</div>
+                                                <div class="text-muted small mt-1">{{ $announcement->description }}</div>
+                                                <div class="text-muted small mt-1">{{ $announcement->time_ago }}</div>
+                                            </div>
                                         </div>
-                                    </div>
-                                </a>
+                                    </a>
+                                @empty
+                                    <div class="list-group-item text-center text-muted">No announcements found.</div>
+                                @endforelse
                             </div>
                         </div>
                     </div>
@@ -229,13 +216,10 @@
         </div>
     </div>
 
-
-
     {{-- content footer --}}
     @include('admin.include.content.footer')
 
 </div>
 
 <!-- footer -->
-
 @include('admin.include.footer')
